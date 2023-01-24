@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Items/Pickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Models/Weapons/grenade.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://GFX/hand-grenade.png" type="Texture" id=3]
+[ext_resource path="res://GFX/cheap-o-grenades(textwithbackground0.png" type="Texture" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.454902, 0.301961, 0.2, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0.207843 )
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="QuadMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_texture = ExtResource( 4 )
+
+[node name="Pickup" instance=ExtResource( 1 )]
+pickup_type = "Grenade Launcher Ammo"
+addition = 3
+
+[node name="CollisionShape" parent="." index="0"]
+visible = false
+disabled = true
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "Float"
+
+[node name="MeshInstance" parent="Mesh" index="0"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 1 )
+
+[node name="Grenade2" type="MeshInstance" parent="Mesh" index="1"]
+transform = Transform( 0.1, 0, -4.65661e-10, 0, 0.1, 0, 4.65661e-10, 0, 0.1, 0.0128829, 0, 0.508598 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 1 )
+
+[node name="Grenade3" type="MeshInstance" parent="Mesh" index="2"]
+transform = Transform( 0.0999999, 0, -1.39698e-09, 0, 0.1, 0, 1.39698e-09, 0, 0.0999999, -0.00619688, 0.650468, 0.308618 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 1 )
+
+[node name="Box" type="MeshInstance" parent="Mesh" index="3"]
+transform = Transform( 0.29198, 0, 0.00759512, 0, 0.918327, 0, 0.0075951, 0, 0.591631, 0.00382744, 0.463565, 0.292568 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="TextBackground" type="MeshInstance" parent="Mesh" index="4"]
+transform = Transform( 0.305798, 0, 0.00865438, 0, 0.152577, 0, 0.00865438, 0, 0.647243, 0.0357088, 0.969844, 0.285742 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Text" type="MeshInstance" parent="Mesh" index="5"]
+transform = Transform( -1.6205e-07, 0, 1, 0, 0.295955, 0, -1, 0, -1.6205e-07, 0.354689, 0.981639, 0.296701 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Grenadeicon" type="Sprite3D" parent="Mesh" index="6"]
+transform = Transform( -1.15484e-07, 0, 0.7, 0, 0.7, 0, -0.7, 0, -1.15484e-07, 0.361482, 0.44996, 0.263424 )
+texture = ExtResource( 3 )

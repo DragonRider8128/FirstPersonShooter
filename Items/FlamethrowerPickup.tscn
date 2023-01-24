@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Items/GunPickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/FlamethrowerEpic.tscn" type="PackedScene" id=2]
+
+[node name="FlamethrowerPickup" instance=ExtResource( 1 )]
+weapon = "Flamethrower"
+
+[node name="MeshInstance" parent="." index="0"]
+visible = false
+
+[node name="CollisionShape" parent="." index="1"]
+disabled = true
+
+[node name="salam" parent="." index="4" instance=ExtResource( 2 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.325546, 0, 0 )

@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Items/Pickup.gd" type="Script" id=1]
+[ext_resource path="res://SFX/pick_up.wav" type="AudioStream" id=2]
+[ext_resource path="res://Interface/PickupPrompt.tscn" type="PackedScene" id=3]
+
+[sub_resource type="SphereShape" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2.4098, 1.8328, 2.85598 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Float"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mesh:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.7, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="CubeMesh" id=4]
+
+[node name="Pickup" type="StaticBody" groups=[
+"transparent",
+]]
+script = ExtResource( 1 )
+pickup_type = "Health"
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="PickupRange" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="PickupRange"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93901, 0 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Float = SubResource( 3 )
+
+[node name="Mesh" type="Spatial" parent="."]
+transform = Transform( -0.025322, 0, -0.999679, 0, 1, 0, 0.999679, 0, -0.025322, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Mesh"]
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="PickupPrompt" parent="." instance=ExtResource( 3 )]
+[connection signal="body_entered" from="PickupRange" to="." method="_on_PickupRange_body_entered"]
+[connection signal="body_exited" from="PickupRange" to="." method="_on_PickupRange_body_exited"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/facility_breach_siren.wav-345677ece4d1b2c0ff9fbdb9718340ba.sample"
+
+[deps]
+
+source_file="res://SFX/facility_breach_siren.wav"
+dest_files=[ "res://.import/facility_breach_siren.wav-345677ece4d1b2c0ff9fbdb9718340ba.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

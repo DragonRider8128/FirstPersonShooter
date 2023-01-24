@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/automatic_rifle1.ogg-e9648d66e5f05437a2ed8bd5d4f078a6.oggstr"
+
+[deps]
+
+source_file="res://SFX/automatic_rifle1.ogg"
+dest_files=[ "res://.import/automatic_rifle1.ogg-e9648d66e5f05437a2ed8bd5d4f078a6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

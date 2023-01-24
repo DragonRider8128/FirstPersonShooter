@@ -1,0 +1,209 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://ModelScenes/assault_rifle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Hammer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SFX/ak47_trim_short.wav" type="AudioStream" id=4]
+[ext_resource path="res://Player/Hand.gd" type="Script" id=5]
+[ext_resource path="res://ModelScenes/Pistol.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ModelScenes/GrenadeLauncher.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Interface/HUD.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Flamethrower.tscn" type="PackedScene" id=9]
+[ext_resource path="res://SFX/alert.wav" type="AudioStream" id=10]
+
+[sub_resource type="CapsuleMesh" id=1]
+mid_height = 3.0
+
+[sub_resource type="CapsuleShape" id=2]
+height = 3.0
+
+[sub_resource type="CylinderShape" id=3]
+
+[sub_resource type="Animation" id=4]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera/Hand/GAP_2DAE01_Adriaens_Naomi_Lowpoly:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.138768, -2.64786 ), Vector3( 0, 0.139, -2.555 ), Vector3( 0, 0.138768, -2.64786 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera/Hand/GrenadeLauncher:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.322, -0.486, -3.35 ), Vector3( 0.322, -0.486, -3.224 ), Vector3( 0.322, -0.486, -3.35 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera/Hand:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 6.254, -0.605, 1.06 ), Vector3( 0.712, -0.605, 1.06 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.3
+
+[sub_resource type="Animation" id=8]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Camera/Hand:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.712, -0.605, 1.06 ), Vector3( 0.624, -0.605, 1.06 ), Vector3( 0.712, -0.605, 1.06 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "PulseSound"
+loop = true
+tracks/0/type = "audio"
+tracks/0/path = NodePath("HealthPulse")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="BoxShape" id=10]
+extents = Vector3( 1.35037, 1, 2.85634 )
+
+[node name="Player" type="KinematicBody" groups=[
+"Player",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0221577, -0.00942397, -0.0214281 )
+script = ExtResource( 1 )
+flamethrower_unlocked = true
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Foot" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.51704, 0 )
+shape = SubResource( 3 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18988, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 0.998122, 0.0612576, 0, -0.0612576, 0.998122, 0.00212049, 0, -0.677742 )
+
+[node name="GunCast" type="RayCast" parent="Head/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="Hand" type="Spatial" parent="Head/Camera"]
+transform = Transform( 0.995817, 0.000222875, 0.0913664, -0.0052108, 0.998508, 0.0543577, -0.0912179, -0.0546064, 0.994333, 0.712, -0.605, 1.06 )
+script = ExtResource( 5 )
+sway_left = Vector3( 0, 0.07, 0 )
+sway_right = Vector3( 0, -0.07, 0 )
+
+[node name="GAP_2DAE01_Adriaens_Naomi_Lowpoly" parent="Head/Camera/Hand" instance=ExtResource( 2 )]
+transform = Transform( 0.484501, 0.0961386, -4.97554, -0.602508, 4.96342, 0.0372343, 4.93986, 0.595953, 0.492543, 0, 0.138768, -2.64786 )
+visible = false
+
+[node name="Pistol" parent="Head/Camera/Hand" instance=ExtResource( 6 )]
+transform = Transform( 0.00907273, -0.00107888, 0.0995817, 0.011567, 0.0993288, 2.22891e-05, -0.0989135, 0.0115166, 0.00913662, 0.594, -0.086, -2.798 )
+visible = false
+
+[node name="Muzzle" type="Spatial" parent="Head/Camera/Hand/Pistol"]
+transform = Transform( 1, -1.52201e-22, 4.26326e-14, 2.66454e-15, 1, 5.55109e-17, 0, -3.33067e-16, 1, 5.38529, 2.35773, -0.158929 )
+
+[node name="GrenadeLauncher" parent="Head/Camera/Hand" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322, -0.486, -3.35 )
+visible = false
+
+[node name="Hammer" parent="Head/Camera/Hand" instance=ExtResource( 3 )]
+transform = Transform( -0.229277, 0.0607102, -0.971467, -0.130495, 0.987126, 0.0924872, 0.964573, 0.147977, -0.218403, 0.34, -0.661, -2.81 )
+visible = false
+
+[node name="Flamethrower" parent="Head/Camera/Hand" instance=ExtResource( 9 )]
+transform = Transform( -1.61544e-07, 2.11329e-08, 0.999999, 0.129713, 0.991551, 0, -0.991551, 0.129713, -1.62921e-07, 0.363, 0.428, -5.016 )
+visible = false
+
+[node name="GroundCheck" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+cast_to = Vector3( 0, -1.5, 0 )
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="HealthPulse" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="AssaultAnim" type="AnimationPlayer" parent="."]
+playback_speed = 1.5
+anims/AssaultFire = SubResource( 4 )
+
+[node name="GrenadeAnim" type="AnimationPlayer" parent="."]
+anims/Fire = SubResource( 5 )
+
+[node name="HandAnim" type="AnimationPlayer" parent="."]
+anims/Draw = SubResource( 6 )
+anims/MeleeAttack = SubResource( 7 )
+anims/MoveSway = SubResource( 8 )
+
+[node name="HealthAnim" type="AnimationPlayer" parent="."]
+anims/PulseSound = SubResource( 9 )
+
+[node name="BulletTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="PistolTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="HUD" parent="." instance=ExtResource( 8 )]
+
+[node name="Hitbox" type="Area" parent="."]
+transform = Transform( 0.995817, 0.000222875, 0.0913664, -0.0107888, 0.993288, 0.115166, -0.0907274, -0.11567, 0.989136, 0.71412, 1.65095, 1.0947 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Hitbox"]
+transform = Transform( 0.992554, -0.00690808, -0.12161, -0.00514402, 0.995121, -0.0985126, 0.121697, 0.0984044, 0.987676, -0.2791, 0.596801, -5.17345 )
+shape = SubResource( 10 )
+[connection signal="timeout" from="BulletTimer" to="." method="_on_BulletTimer_timeout"]
+[connection signal="timeout" from="PistolTimer" to="." method="_on_PistolTimer_timeout"]

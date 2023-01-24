@@ -1,0 +1,125 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Models/Weapons/grenade_launcher.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.262745, 0.0509804, 0.0509804, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.878431, 0.211765, 0.211765, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.443137, 0.376471, 0.294118, 1 )
+metallic = 0.82
+roughness = 0.73
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0, 1, 0.109804, 1 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.423529, 0.121569, 0.121569, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.168627, 0.0196078, 0.0196078, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.113725, 0.0117647, 0.0117647, 1 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 1, 0.152941, 0.152941, 1 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.560784, 0.415686, 0.415686, 1 )
+roughness = 0.0
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.458824, 0.113725, 0.113725, 1 )
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_color = Color( 0.729412, 0.462745, 0.462745, 1 )
+metallic = 0.41
+roughness = 0.37
+
+[sub_resource type="SpatialMaterial" id=12]
+albedo_color = Color( 0.278431, 0.0666667, 0.0666667, 1 )
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_color = Color( 0.886275, 0.321569, 0.321569, 1 )
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_color = Color( 1, 0.12549, 0.12549, 1 )
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.745098, 0.34902, 0.34902, 1 )
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 0.337255, 0.407843, 0.290196, 1 )
+metallic = 0.18
+roughness = 0.27
+
+[sub_resource type="SpatialMaterial" id=17]
+albedo_color = Color( 0.427451, 0.607843, 0.654902, 1 )
+
+[sub_resource type="SpatialMaterial" id=18]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_color = Color( 0.552941, 0.117647, 0.117647, 1 )
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_color = Color( 0.741176, 0.184314, 0.184314, 1 )
+roughness = 0.63
+
+[sub_resource type="SpatialMaterial" id=21]
+albedo_color = Color( 0.780392, 0.498039, 0.498039, 1 )
+
+[sub_resource type="SpatialMaterial" id=22]
+albedo_color = Color( 0.266667, 0.113725, 0.423529, 1 )
+metallic = 0.94
+roughness = 0.2
+
+[sub_resource type="SpatialMaterial" id=23]
+albedo_color = Color( 0.176471, 0.0431373, 0.196078, 1 )
+metallic = 0.81
+roughness = 0.62
+
+[sub_resource type="SpatialMaterial" id=24]
+albedo_color = Color( 0.172549, 0.6, 0.74902, 1 )
+roughness = 0.18
+
+[sub_resource type="SpatialMaterial" id=25]
+albedo_color = Color( 0.0117647, 0.392157, 0.596078, 1 )
+metallic = 0.92
+roughness = 0.41
+
+[node name="MeshInstance" type="MeshInstance"]
+transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+material/2 = SubResource( 3 )
+material/3 = SubResource( 4 )
+material/4 = SubResource( 5 )
+material/5 = SubResource( 6 )
+material/6 = SubResource( 7 )
+material/7 = SubResource( 7 )
+material/8 = SubResource( 8 )
+material/9 = SubResource( 7 )
+material/10 = SubResource( 9 )
+material/11 = SubResource( 10 )
+material/12 = SubResource( 11 )
+material/13 = SubResource( 12 )
+material/14 = SubResource( 13 )
+material/15 = SubResource( 14 )
+material/16 = SubResource( 15 )
+material/17 = SubResource( 16 )
+material/18 = SubResource( 17 )
+material/19 = SubResource( 18 )
+material/20 = SubResource( 19 )
+material/21 = SubResource( 20 )
+material/22 = SubResource( 21 )
+material/23 = SubResource( 22 )
+material/24 = SubResource( 23 )
+material/25 = SubResource( 24 )
+material/26 = SubResource( 24 )
+material/27 = SubResource( 25 )

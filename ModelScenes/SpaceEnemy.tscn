@@ -1,0 +1,71 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Models/Enemies/Spacesuit.fbx" type="PackedScene" id=1]
+[ext_resource path="res://ModelScenes/AnimationDamage.gd" type="Script" id=2]
+[ext_resource path="res://Animations/punch_right_withdamage.tres" type="Animation" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.921569, 0.0235294, 0.0235294, 1 )
+roughness = 0.08
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.784314, 0.262745, 0.262745, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.282353, 0.678431, 0.698039, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 1, 0.494118, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.298039, 0.262745, 0.262745, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.901961, 0.054902, 0.054902, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.796078, 0.521569, 0.521569, 1 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 1, 0.494118, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 1, 0.0352941, 0.0352941, 1 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.219608, 0.270588, 0.313726, 1 )
+metallic = 0.36
+roughness = 0.03
+
+[node name="Spacesuit" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="CharacterArmature" parent="." index="0"]
+transform = Transform( 100, 0, 0, 0, 0, 100, 0, -100, 0, 0, 0, 0 )
+
+[node name="SpaceSuit_Feet" parent="CharacterArmature" index="1"]
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+
+[node name="SpaceSuit_Legs" parent="CharacterArmature" index="2"]
+material/0 = SubResource( 3 )
+material/1 = SubResource( 4 )
+material/2 = SubResource( 5 )
+material/3 = SubResource( 3 )
+
+[node name="SpaceSuit_Body" parent="CharacterArmature" index="3"]
+material/0 = SubResource( 3 )
+material/1 = SubResource( 4 )
+material/2 = SubResource( 6 )
+material/3 = SubResource( 7 )
+
+[node name="SpaceSuit_Head" parent="CharacterArmature" index="4"]
+material/0 = SubResource( 8 )
+material/1 = SubResource( 9 )
+material/2 = SubResource( 10 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/punch_right_withdamage = ExtResource( 3 )
+
+[node name="PunchAnimation" type="AnimationPlayer" parent="." index="2"]
+anims/punch_right_withdamage = ExtResource( 3 )

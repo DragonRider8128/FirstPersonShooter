@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Models/Weapons/Hammer/hammer_grey.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.847059, 0.678431, 0.678431, 1 )
+metallic = 0.57
+roughness = 0.11
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.862745, 0.0431373, 0.0431373, 1 )
+metallic = 0.3
+roughness = 0.4
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.172549, 0.156863, 0.152941, 1 )
+metallic = 0.58
+roughness = 0.26
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.768627, 0.701961, 0.701961, 1 )
+metallic = 1.0
+roughness = 0.0
+
+[node name="HammerMesh" type="MeshInstance"]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+material/2 = SubResource( 3 )
+material/3 = SubResource( 4 )

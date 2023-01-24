@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://SFX/explosion1.wav" type="AudioStream" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0, 0.540741 )
+colors = PoolColorArray( 1, 0.0627451, 0.0627451, 1, 0.623529, 0.980392, 0.0196078, 1, 0.956863, 0.521569, 0.0392157, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 0.6
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 12.21
+color_ramp = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+albedo_color = Color( 0.690196, 0.435294, 0.247059, 1 )
+
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
+radius = 2.0
+height = 4.0
+
+[node name="Particles" type="Particles"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0485764, -0.0542431, -0.0296497 )
+emitting = false
+amount = 500
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.5
+randomness = 1.0
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true

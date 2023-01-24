@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Items/GunPickup.gd" type="Script" id=1]
+[ext_resource path="res://Interface/PickupPrompt.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.15667, 0.135602, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.9179, 0.847893, 1.69433 )
+
+[node name="GunPickup" type="StaticBody"]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.139163, 0, 0, 0, 0.117236, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 2 )
+
+[node name="Range" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.456144, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Range"]
+shape = SubResource( 3 )
+
+[node name="PickupPrompt" parent="." instance=ExtResource( 2 )]
+[connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]

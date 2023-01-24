@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Particles.tscn" type="PackedScene" id=1]
+[ext_resource path="res://particles_explosion2.tres" type="Material" id=2]
+
+[node name="Explosion" type="Spatial"]
+
+[node name="Particles" parent="." instance=ExtResource( 1 )]
+process_material = ExtResource( 2 )
