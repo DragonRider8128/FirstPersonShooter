@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Enemies/Pathfind.gd" type="Script" id=1]
+[ext_resource path="res://ModelScenes/SpaceEnemy.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.761015
+height = 4.22546
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.21391, 0.722907, 4.49639 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 7.5203, 4.75417, 10.3356 )
+
+[node name="Pathfinder" type="KinematicBody" groups=[
+"AI",
+"Enemy",
+"transparent",
+]]
+script = ExtResource( 1 )
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.833
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="AliveCollision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.444982, 2.55095 )
+shape = SubResource( 1 )
+
+[node name="DeadCollision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.67625, 3.97779 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Spawner" type="Spatial" parent="."]
+transform = Transform( 0.992254, -0.124225, 0, 0.124225, 0.992254, 0, 0, 0, 1, -0.139634, 1.0978, 2.48984 )
+
+[node name="Spacesuit" parent="." instance=ExtResource( 2 )]
+transform = Transform( -3, 0, 9.77524e-07, 0, 3, 0, -9.77524e-07, 0, -3, 0, -2.96856, 2.80207 )
+
+[node name="Eyes" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0247832, 1.94638, 2.39993 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.43179, -0.0592726, 1.15386, 1.91813 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="TriggerRange" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.77646 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="TriggerRange"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.383758, 2.82353, -4.58125 )
+shape = SubResource( 3 )
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="TriggerRange" to="." method="_on_TriggerRange_body_entered"]
+[connection signal="body_exited" from="TriggerRange" to="." method="_on_TriggerRange_body_exited"]
