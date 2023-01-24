@@ -1,0 +1,350 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Interface/PNG/glassPanel_cornerTR.png" type="Texture" id=1]
+[ext_resource path="res://Interface/HUD.tres" type="Theme" id=2]
+[ext_resource path="res://Interface/HUD.gd" type="Script" id=3]
+[ext_resource path="res://GFX/pistol_icon_1.png" type="Texture" id=4]
+[ext_resource path="res://GFX/assault_icon - Copy.png" type="Texture" id=5]
+[ext_resource path="res://GFX/launcher_icon.png" type="Texture" id=6]
+[ext_resource path="res://Interface/Crosshair.tscn" type="PackedScene" id=7]
+[ext_resource path="res://GFX/plus_icon1.png" type="Texture" id=8]
+[ext_resource path="res://SFX/error1.wav" type="AudioStream" id=9]
+[ext_resource path="res://GFX/overheat.png" type="Texture" id=10]
+[ext_resource path="res://GFX/damageoverlay.png" type="Texture" id=11]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.941176, 0.34902, 0.027451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.164706, 0.141176, 0.141176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.976471, 0.0862745, 0.0862745, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.121569, 0.117647, 0.117647, 1 )
+
+[sub_resource type="DynamicFont" id=5]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.666667, 0.741176, 0.223529, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "DamageEffect"
+tracks/0/type = "value"
+tracks/0/path = NodePath("DamageOverlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("OverheatIcon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "DamageEffect"
+tracks/0/type = "value"
+tracks/0/path = NodePath("DamageOverlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "DamageStop"
+
+[sub_resource type="Animation" id=12]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("OverheatIcon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.629944
+margin_right = 0.629883
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+high_health = Color( 0.27451, 0.8, 0.27451, 1 )
+medium_health = Color( 1, 0.4, 0, 1 )
+
+[node name="AmmoBG" type="NinePatchRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -93.0
+margin_right = 275.0
+texture = ExtResource( 1 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoContainer" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 158.73
+margin_top = -74.4442
+margin_right = 259.73
+margin_bottom = 14.5558
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoTitle" type="Label" parent="AmmoContainer"]
+margin_right = 101.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 1, 0.933333, 0.933333, 1 )
+text = "Ammo:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoLabel" type="Label" parent="AmmoContainer"]
+margin_top = 31.0
+margin_right = 101.0
+margin_bottom = 58.0
+custom_colors/font_color = Color( 0.329412, 0.101961, 0.811765, 1 )
+text = "40/100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FlamethrowerHeat" type="ProgressBar" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 159.449
+margin_top = -43.9514
+margin_right = 260.449
+margin_bottom = -16.9514
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 60.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OverheatIcon" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -64.0
+margin_top = 50.0
+margin_right = 36.0
+margin_bottom = 150.0
+texture = ExtResource( 10 )
+expand = true
+
+[node name="PistolIcon" type="TextureRect" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 24.4994
+margin_top = -71.9631
+margin_right = 873.499
+margin_bottom = 510.037
+rect_scale = Vector2( 0.0956417, 0.0917284 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AssaultIcon" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 2.22694
+margin_top = -120.963
+margin_right = 851.227
+margin_bottom = 461.037
+rect_scale = Vector2( 0.292817, 0.316236 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LauncherIcon" type="TextureRect" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -0.0450821
+margin_top = -103.23
+margin_right = 848.955
+margin_bottom = 478.77
+rect_scale = Vector2( 0.292817, 0.316236 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Crosshair" parent="." instance=ExtResource( 7 )]
+
+[node name="HealthBar" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 169.042
+margin_top = -144.814
+margin_right = 209.043
+margin_bottom = -114.315
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthUnder" type="ProgressBar" parent="HealthBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.197
+margin_top = -17.4521
+margin_right = 75.803
+margin_bottom = 21.5479
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthOver" type="ProgressBar" parent="HealthBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -183.697
+margin_top = -17.4521
+margin_right = 76.303
+margin_bottom = 21.5479
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
+value = 75.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthIcon" type="TextureRect" parent="HealthBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -179.181
+margin_top = -13.5401
+margin_right = -149.181
+margin_bottom = 16.4599
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DamageTween" type="Tween" parent="HealthBar"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DamageEffect = SubResource( 8 )
+anims/OverheatFlash2 = SubResource( 9 )
+
+[node name="DamageAnim" type="AnimationPlayer" parent="."]
+anims/DamageEffect = SubResource( 10 )
+anims/DamageStop = SubResource( 11 )
+anims/OverheatFlash2 = SubResource( 12 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="DamageOverlay" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreText" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 140.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0.258824, 0.211765, 0.686275, 1 )
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
